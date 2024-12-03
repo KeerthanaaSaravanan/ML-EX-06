@@ -33,21 +33,20 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 import matplotlib.pyplot as plt
 
 # Load the dataset
-dataset_url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-ML241EN-SkillsNetwork/labs/datasets/food_items.csv"
-food_df = pd.read_csv(dataset_url)
+url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-ML241EN-SkillsNetwork/labs/datasets/food_items.csv"
+data = pd.read_csv(url)
 
 # Display basic info about the dataset
-print(food_df.dtypes)
+print(data.dtypes,"\n")
 
 # Separate features and target variable
-X_raw = food_df.iloc[:, :-1]  # All columns except the last one (features)
-y_raw = food_df.iloc[:, -1]   # The last column (target variable)
+X_raw = data.iloc[:, :-1]  # All columns except the last one (features)
+y_raw = data.iloc[:, -1]   # The last column (target variable)
 
-# Feature scaling: MinMaxScaler
+# Feature,target scaling: MinMaxScaler
 scaler = MinMaxScaler()
 X = scaler.fit_transform(X_raw)
 
-# Encode the target labels
 label_encoder = LabelEncoder()
 y = label_encoder.fit_transform(y_raw)
 
@@ -72,6 +71,7 @@ disp = ConfusionMatrixDisplay(confusion_matrix=conf_matrix, display_labels=label
 disp.plot(cmap='Blues')
 plt.title('Confusion Matrix')
 plt.show()
+
 
 ```
 ## Output:
